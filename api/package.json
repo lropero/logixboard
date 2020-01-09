@@ -1,0 +1,32 @@
+{
+  "name": "most-api",
+  "version": "1.0.0",
+  "description": "moving stuff",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -f ./npm-*.log && rm -f ./package-lock.json && rm -rf ./node_modules && npm cache verify",
+    "lint": "npx standard --fix",
+    "nuke": "npm run clean && npm install",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "upgrade": "npx upgradeps -n"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "gradient-string": "^1.2.0",
+    "http-errors": "^1.7.3",
+    "morgan": "^1.9.1",
+    "neat-csv": "^5.1.0"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lropero/most.git"
+  },
+  "author": "Luciano Ropero <lropero@gmail.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/lropero/most/issues"
+  },
+  "homepage": "https://github.com/lropero/most#readme"
+}
