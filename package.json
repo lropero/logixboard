@@ -7,15 +7,11 @@
     "clean": "rm -f ./npm-*.log && rm -f ./package-lock.json && rm -rf ./node_modules && npm cache verify",
     "lint": "npx standard --fix",
     "nuke": "npm run clean && npm install",
-    "nuke:all": "concurrently 'npm run nuke:api' 'npm run nuke'",
-    "nuke:api": "cd api && npm run nuke",
     "start": "webpack-dev-server",
     "start:all": "concurrently 'npm run start:api' 'npm run start'",
     "start:api": "cd api && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "upgrade": "npx upgradeps -n",
-    "upgrade:all": "concurrently 'npm run upgrade:api' 'npm run upgrade'",
-    "upgrade:api": "cd api && npm run upgrade"
+    "upgrade": "npx upgradeps -n"
   },
   "dependencies": {
     "react": "^16.12.0",
