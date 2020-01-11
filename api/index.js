@@ -13,4 +13,4 @@ if (api.get('env') === 'development') {
 api.use('/', routes)
 api.use((req, res) => res.status(405).json(createError(405)))
 api.listen(port)
-console.log(gradient.summer(`MoSt API listening on port ${port}`))
+console.log(gradient.summer(`Logixboard API listening on port ${port}`))

@@ -1,7 +1,7 @@
 {
-  "name": "most-api",
+  "name": "logixboard-api",
   "version": "1.0.0",
-  "description": "moving stuff",
+  "description": "Freight Forwarder Engagement Solution",
   "main": "index.js",
   "scripts": {
     "clean": "rm -f ./npm-*.log && rm -f ./package-lock.json && rm -rf ./node_modules && npm cache verify",
@@ -21,12 +21,12 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lropero/most.git"
+    "url": "git+https://github.com/lropero/logixboard.git"
   },
   "author": "Luciano Ropero <lropero@gmail.com>",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/lropero/most/issues"
+    "url": "https://github.com/lropero/logixboard/issues"
   },
-  "homepage": "https://github.com/lropero/most#readme"
+  "homepage": "https://github.com/lropero/logixboard#readme"
 }

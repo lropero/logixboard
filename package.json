@@ -1,7 +1,7 @@
 {
-  "name": "most",
+  "name": "logixboard",
   "version": "1.0.0",
-  "description": "moving stuff",
+  "description": "Freight Forwarder Engagement Solution",
   "main": "src/index.js",
   "scripts": {
     "clean": "rm -f ./npm-*.log && rm -f ./package-lock.json && rm -rf ./node_modules && npm cache verify",
@@ -14,6 +14,10 @@
     "upgrade": "npx upgradeps -n"
   },
   "dependencies": {
+    "@react-google-maps/api": "^1.8.1",
+    "lodash": "^4.17.15",
+    "mobx": "^5.15.1",
+    "mobx-react-lite": "^1.5.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "styled-components": "^4.4.1"
@@ -31,12 +35,12 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lropero/most.git"
+    "url": "git+https://github.com/lropero/logixboard.git"
   },
   "author": "Luciano Ropero <lropero@gmail.com>",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/lropero/most/issues"
+    "url": "https://github.com/lropero/logixboard/issues"
   },
-  "homepage": "https://github.com/lropero/most#readme"
+  "homepage": "https://github.com/lropero/logixboard#readme"
 }
