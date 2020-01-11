@@ -8,6 +8,8 @@ import { Dashboard } from 'logixboard/components'
 import { Utils as UtilsContext } from 'logixboard/contexts'
 import { useWindowDimensions } from 'logixboard/hooks'
 
+import 'antd/dist/antd.css'
+
 const Style = createGlobalStyle`
   body {
     background-color: ${theme.background};
