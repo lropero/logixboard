@@ -2,13 +2,14 @@ import React from 'react'
 import { GoogleMap, LoadScript } from '@react-google-maps/api'
 import { useObserver } from 'mobx-react-lite'
 
-import { useUtils } from 'logixboard/hooks'
+import { useTheme, useUtils } from 'logixboard/hooks'
 
 const Map = () => {
+  const theme = useTheme()
   const utils = useUtils()
 
   const options = {
-    backgroundColor: utils.theme.background,
+    backgroundColor: theme.map.water,
     disableDefaultUI: true,
     disableDoubleClickZoom: true,
     draggable: false,
@@ -17,7 +18,15 @@ const Map = () => {
         elementType: 'geometry',
         stylers: [
           {
-            color: '#f5f5f5'
+            color: theme.map.land
+          }
+        ]
+      },
+      {
+        elementType: 'labels',
+        stylers: [
+          {
+            visibility: 'off'
           }
         ]
       },
@@ -56,19 +65,18 @@ const Map = () => {
       },
       {
         featureType: 'administrative.land_parcel',
-        elementType: 'labels',
-        stylers: [
-          {
-            visibility: 'off'
-          }
-        ]
-      },
-      {
-        featureType: 'administrative.land_parcel',
         elementType: 'labels.text.fill',
         stylers: [
           {
             color: '#bdbdbd'
+          }
+        ]
+      },
+      {
+        featureType: 'administrative.neighborhood',
+        stylers: [
+          {
+            visibility: 'off'
           }
         ]
       },
@@ -86,15 +94,6 @@ const Map = () => {
         stylers: [
           {
             color: '#eeeeee'
-          }
-        ]
-      },
-      {
-        featureType: 'poi',
-        elementType: 'labels.text',
-        stylers: [
-          {
-            visibility: 'off'
           }
         ]
       },
@@ -180,15 +179,6 @@ const Map = () => {
       },
       {
         featureType: 'road.local',
-        elementType: 'labels',
-        stylers: [
-          {
-            visibility: 'off'
-          }
-        ]
-      },
-      {
-        featureType: 'road.local',
         elementType: 'labels.text.fill',
         stylers: [
           {
@@ -227,7 +217,7 @@ const Map = () => {
         elementType: 'geometry',
         stylers: [
           {
-            color: '#c9c9c9'
+            color: theme.map.water
           }
         ]
       },
@@ -248,7 +238,7 @@ const Map = () => {
       <GoogleMap
         center={{ lat: 10, lng: 0 }}
         clickableIcons={false}
-        mapContainerStyle={{ height: utils.dimensions.height, width: utils.dimensions.width }}
+        mapContainerStyle={{ height: utils.dimensions.height - 64, width: utils.dimensions.width }}
         options={options}
         zoom={2.2}
       />

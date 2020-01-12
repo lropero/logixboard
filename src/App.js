@@ -1,28 +1,20 @@
 import React, { useEffect } from 'react'
-import { createGlobalStyle } from 'styled-components'
+import { Layout } from 'antd'
+import { ThemeProvider } from 'styled-components'
 import { useLocalStore } from 'mobx-react-lite'
 
 import config from 'logixboard/config'
 import theme from 'logixboard/theme'
-import { Dashboard } from 'logixboard/components'
+import { Dashboard, Navbar } from 'logixboard/components'
 import { Utils as UtilsContext } from 'logixboard/contexts'
 import { useWindowDimensions } from 'logixboard/hooks'
 
 import 'antd/dist/antd.css'
 
-const Style = createGlobalStyle`
-  body {
-    background-color: ${theme.background};
-    margin: 0;
-    padding: 0;
-  }
-`
-
 const App = () => {
   const utils = useLocalStore(() => ({
     config,
     dimensions: {},
-    theme,
     updateDimensions ({ height, width }) {
       this.dimensions.height = height
       this.dimensions.width = width
@@ -37,8 +29,16 @@ const App = () => {
 
   return (
     <UtilsContext.Provider value={utils}>
-      <Style />
-      <Dashboard />
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <Layout.Header style={{ padding: 0 }}>
+            <Navbar />
+          </Layout.Header>
+          <Layout.Content>
+            <Dashboard />
+          </Layout.Content>
+        </Layout>
+      </ThemeProvider>
     </UtilsContext.Provider>
   )
 }
