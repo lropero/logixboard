@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { darken } from 'polished'
 
 import avatar from 'logixboard/assets/avatar.png'
 
 const Icon = styled.img`
-  background: linear-gradient(${({ theme }) => darken(0.25, theme.white)}, ${({ theme }) => theme.white});
+  background: linear-gradient(${({ theme }) => theme.navbar.iconBackgroundFrom}, ${({ theme }) => theme.navbar.iconBackgroundTo});
   border-radius: 50%;
-  border: 2px solid ${({ theme }) => theme.white};
+  border: 2px solid ${({ theme }) => theme.navbar.iconBorder};
   cursor: pointer;
   height: 38px;
   left: calc(50% - 19px);
@@ -24,7 +23,7 @@ const Ring = styled.div`
   position: relative;
   width: 40px;
   &:after {
-    background: linear-gradient(${({ theme }) => theme.brand}, ${({ theme }) => darken(0.25, theme.brand)});
+    background: linear-gradient(${({ theme }) => theme.navbar.ringBackgroundFrom}, ${({ theme }) => theme.navbar.ringBackgroundTo});
     border-radius: 50%;
     bottom: -1px;
     content: ' ';

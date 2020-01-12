@@ -6,7 +6,7 @@ import logo from 'logixboard/assets/logo.png'
 import { Avatar } from 'logixboard/components'
 
 const Bar = styled.div`
-  background-color: ${({ theme }) => theme.navbar.bar};
+  background-color: ${({ theme }) => theme.navbar.background};
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.3);
   display: flex;
   height: 64px;
@@ -16,7 +16,7 @@ const Bar = styled.div`
 `
 
 const Bell = styled.div`
-  color: ${({ theme }) => theme.navbar.bell};
+  color: ${({ theme }) => theme.navbar.menuItem};
   cursor: pointer;
   display: flex;
   font-size: 1.3em;

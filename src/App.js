@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Layout } from 'antd'
-import { ThemeProvider } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { useLocalStore } from 'mobx-react-lite'
 
 import config from 'logixboard/config'
@@ -11,7 +11,27 @@ import { useWindowDimensions } from 'logixboard/hooks'
 
 import 'antd/dist/antd.css'
 
+const CustomStyle = createGlobalStyle`
+  .ant-menu-horizontal {
+    border-bottom: none !important;
+  }
+  .ant-menu-item {
+    border-bottom: none !important;
+    color: ${theme.navbar.menuItem} !important;
+  }
+  .ant-menu-item-active {
+    border-bottom: none !important;
+    color: ${theme.navbar.menuItemActive} !important;
+  }
+  .ant-menu-item-selected {
+    border-bottom: none !important;
+    color: ${theme.navbar.menuItemSelected} !important;
+  }
+`
+
 const App = () => {
+  const { height, width } = useWindowDimensions()
+
   const utils = useLocalStore(() => ({
     config,
     dimensions: {},
@@ -21,8 +41,6 @@ const App = () => {
     }
   }))
 
-  const { height, width } = useWindowDimensions()
-
   useEffect(() => {
     utils.updateDimensions({ height, width })
   }, [height, width])
@@ -30,6 +48,7 @@ const App = () => {
   return (
     <UtilsContext.Provider value={utils}>
       <ThemeProvider theme={theme}>
+        <CustomStyle />
         <Layout>
           <Layout.Header style={{ padding: 0 }}>
             <Navbar />
