@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Icon, Menu } from 'antd'
+import { Avatar, Icon, Menu } from 'antd'
 
 import logo from 'logixboard/assets/logo.png'
-import { Avatar } from 'logixboard/components'
 
 const Bar = styled.div`
   background-color: ${({ theme }) => theme.navbar.background};
@@ -62,7 +61,7 @@ const Navbar = () => {
           </Menu.Item>
         </Menu>
       </Nav>
-      <Settings><Bell><Icon type='bell' /></Bell><Avatar /></Settings>
+      <Settings><Bell><Icon type='bell' /></Bell><Avatar icon='user' style={{ cursor: 'pointer' }} /></Settings>
     </Bar>
   )
 }

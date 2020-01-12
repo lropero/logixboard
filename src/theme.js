@@ -9,14 +9,9 @@ const theme = {
   },
   navbar: {
     background: '#ffffff',
-    iconBackgroundFrom: darken(0.2, '#ffffff'),
-    iconBackgroundTo: '#ffffff',
-    iconBorder: '#ffffff',
     menuItem: '#999999',
     menuItemActive: lighten(0.1, '#999999'),
-    menuItemSelected: brand,
-    ringBackgroundFrom: brand,
-    ringBackgroundTo: darken(0.2, brand)
+    menuItemSelected: brand
   }
 }
 
