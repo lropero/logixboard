@@ -27,6 +27,18 @@ const CustomStyle = createGlobalStyle`
     border-bottom: none !important;
     color: ${theme.navbar.menuItemSelected} !important;
   }
+  .ant-table-arrival {
+    width: 120px;
+  }
+  .ant-table-id {
+    width: 120px;
+  }
+  .ant-table-mode {
+    width: 60px;
+  }
+  .ant-table-status {
+    width: 120px;
+  }
 `
 
 const App = () => {
