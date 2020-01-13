@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "clean": "rm -f ./npm-*.log && rm -f ./package-lock.json && rm -rf ./node_modules && npm cache verify",
+    "install:all": "npm install && cd api && npm install",
     "lint": "npx standard --fix",
     "nuke": "npm run clean && npm install",
     "start": "webpack-dev-server",
