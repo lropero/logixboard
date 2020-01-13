@@ -4,7 +4,7 @@ import { Table } from 'antd'
 import { format } from 'date-fns'
 
 import { modeToIcon, statusToIcon } from 'logixboard/helpers'
-import { useApi } from 'logixboard/hooks'
+import { useApi, useUtils } from 'logixboard/hooks'
 
 const Icon = styled.div`
   font-size: 1.5em;
@@ -17,6 +17,7 @@ const Status = styled.div`
 
 const List = () => {
   const api = useApi()
+  const utils = useUtils()
   const [dataSource, setDataSource] = useState([])
 
   useEffect(() => {
@@ -33,6 +34,23 @@ const List = () => {
     }
     fetch()
   }, [])
+
+  const handleClick = (record) => {
+    const { key: id } = record
+    console.log(`Open ${id}`)
+  }
+
+  const handleMouseEnter = (record) => {
+    const { destination, key: id, origin } = record
+    utils.setCurrent({ destination, id, origin })
+  }
+
+  const handleMouseLeave = (record) => {
+    const { key: id } = record
+    if (utils.current === id) {
+      utils.current = null
+    }
+  }
 
   const columns = [
     {
@@ -77,8 +95,15 @@ const List = () => {
     <Table
       columns={columns}
       dataSource={dataSource}
+      onRow={(record) => {
+        return {
+          onClick: () => handleClick(record),
+          onMouseEnter: () => handleMouseEnter(record),
+          onMouseLeave: () => handleMouseLeave(record)
+        }
+      }}
       pagination={{ pageSize: 20, position: 'top' }}
-      scroll={{ y: 280 }}
+      scroll={{ y: 220 }}
       size='small'
     />
   )

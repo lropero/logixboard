@@ -10,7 +10,7 @@ const statusToIcon = (status) => {
     case 'customs hold': return <IoMdWarning style={{ color: theme.status.customsHold }} />
     case 'in transit': return <IoMdTime style={{ color: theme.status.inTransit }} />
     case 'roll-over': return <IoIosShareAlt style={{ color: theme.status.rollOver }} />
-    case 'transporterror': return <IoIosSad style={{ color: theme.status.transporterror }}  />
+    case 'transporterror': return <IoIosSad style={{ color: theme.status.transporterror }} />
     default: return <IoMdGlobe />
   }
 }

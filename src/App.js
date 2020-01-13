@@ -7,7 +7,7 @@ import config from 'logixboard/config'
 import theme from 'logixboard/theme'
 import { Dashboard, Navbar } from 'logixboard/components'
 import { Utils as UtilsContext } from 'logixboard/contexts'
-import { useWindowDimensions } from 'logixboard/hooks'
+import { useApi, useWindowDimensions } from 'logixboard/hooks'
 
 import 'antd/dist/antd.css'
 
@@ -42,14 +42,35 @@ const CustomStyle = createGlobalStyle`
 `
 
 const App = () => {
+  const api = useApi(config)
   const { height, width } = useWindowDimensions()
 
   const utils = useLocalStore(() => ({
     config,
+    current: null,
     dimensions: {},
-    updateDimensions ({ height, width }) {
-      this.dimensions.height = height
-      this.dimensions.width = width
+    markers: {},
+    async setCurrent ({ destination, id, origin }) {
+      this.current = id
+      if (!this.markers[id]) {
+        try {
+          const info = await api.info({ destination, origin })
+          if (
+            (info.destination.geometry && info.destination.geometry.location) &&
+            (info.origin.geometry && info.origin.geometry.location)
+          ) {
+            this.markers[id] = {
+              destination: info.destination.geometry.location,
+              origin: info.origin.geometry.location
+            }
+          }
+        } catch (error) {
+          console.error(error)
+        }
+      }
+    },
+    updateDimensions (dimensions) {
+      this.dimensions = dimensions
     }
   }))
 

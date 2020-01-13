@@ -1,5 +1,6 @@
-import React from 'react'
-import { GoogleMap, LoadScript } from '@react-google-maps/api'
+/* global google */
+import React, { useState } from 'react'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { useObserver } from 'mobx-react-lite'
 
 import { useTheme, useUtils } from 'logixboard/hooks'
@@ -7,6 +8,39 @@ import { useTheme, useUtils } from 'logixboard/hooks'
 const Map = () => {
   const theme = useTheme()
   const utils = useUtils()
+  const [map, setMap] = useState()
+
+  const getMarkers = () => {
+    if (map && utils.current && utils.markers[utils.current] && Object.keys(utils.markers[utils.current]).length) {
+      setTimeout(() => {
+        const bounds = new google.maps.LatLngBounds()
+        bounds.extend(new google.maps.LatLng(utils.markers[utils.current].destination.lat, utils.markers[utils.current].destination.lng))
+        bounds.extend(new google.maps.LatLng(utils.markers[utils.current].origin.lat, utils.markers[utils.current].origin.lng))
+        map.fitBounds(bounds)
+      }, 10) // Hacky, could be improved (mobx reaction?)
+
+      return (
+        <>
+          <Marker
+            clickable={false}
+            icon={{
+              scaledSize: new google.maps.Size(34, 34),
+              url: 'http://icons.iconarchive.com/icons/vexels/office/1024/email-send-icon.png'
+            }}
+            position={{ lat: utils.markers[utils.current].origin.lat, lng: utils.markers[utils.current].origin.lng }}
+          />,
+          <Marker
+            clickable={false}
+            icon={{
+              scaledSize: new google.maps.Size(42, 42),
+              url: 'https://cdn1.iconfinder.com/data/icons/fitness-sport/512/finish_flag-512.png'
+            }}
+            position={{ lat: utils.markers[utils.current].destination.lat, lng: utils.markers[utils.current].destination.lng }}
+          />
+        </>
+      )
+    }
+  }
 
   const options = {
     backgroundColor: theme.map.water,
@@ -23,14 +57,6 @@ const Map = () => {
         ]
       },
       {
-        elementType: 'labels',
-        stylers: [
-          {
-            visibility: 'off'
-          }
-        ]
-      },
-      {
         elementType: 'labels.icon',
         stylers: [
           {
@@ -42,7 +68,7 @@ const Map = () => {
         elementType: 'labels.text.fill',
         stylers: [
           {
-            color: '#616161'
+            color: theme.map.textLand
           }
         ]
       },
@@ -65,18 +91,19 @@ const Map = () => {
       },
       {
         featureType: 'administrative.land_parcel',
-        elementType: 'labels.text.fill',
+        elementType: 'labels',
         stylers: [
           {
-            color: '#bdbdbd'
+            visibility: 'off'
           }
         ]
       },
       {
-        featureType: 'administrative.neighborhood',
+        featureType: 'administrative.land_parcel',
+        elementType: 'labels.text.fill',
         stylers: [
           {
-            visibility: 'off'
+            color: '#bdbdbd'
           }
         ]
       },
@@ -94,6 +121,15 @@ const Map = () => {
         stylers: [
           {
             color: '#eeeeee'
+          }
+        ]
+      },
+      {
+        featureType: 'poi',
+        elementType: 'labels.text',
+        stylers: [
+          {
+            visibility: 'off'
           }
         ]
       },
@@ -179,6 +215,15 @@ const Map = () => {
       },
       {
         featureType: 'road.local',
+        elementType: 'labels',
+        stylers: [
+          {
+            visibility: 'off'
+          }
+        ]
+      },
+      {
+        featureType: 'road.local',
         elementType: 'labels.text.fill',
         stylers: [
           {
@@ -226,22 +271,24 @@ const Map = () => {
         elementType: 'labels.text.fill',
         stylers: [
           {
-            color: '#9e9e9e'
+            color: theme.map.textWater
           }
         ]
       }
     ]
   }
 
-  return useObserver(() => (
+  return useObserver(() => Object.keys(utils.dimensions).length && (
     <LoadScript googleMapsApiKey={utils.config.googleMapsApiKey}>
       <GoogleMap
-        center={{ lat: 10, lng: 0 }}
+        center={(utils.current && map && map.getCenter()) || { lat: 10, lng: 0 }}
         clickableIcons={false}
-        mapContainerStyle={{ height: utils.dimensions.height - 64, width: utils.dimensions.width }}
+        mapContainerStyle={{ height: utils.dimensions.height - 286, width: utils.dimensions.width }}
+        onLoad={(map) => setMap(map)}
         options={options}
-        zoom={2.2}
-      />
+        zoom={(utils.current && map && map.getZoom()) || 2.2}
+      >{getMarkers()}
+      </GoogleMap>
     </LoadScript>
   ))
 }
