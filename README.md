@@ -14,5 +14,5 @@ $ npm run install:all
 
 ### Usage
 ```sh
-$ npm run start:all
+$ npm run start
 ```
