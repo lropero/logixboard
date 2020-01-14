@@ -12,12 +12,14 @@ const Map = () => {
 
   const getMarkers = () => {
     if (map && utils.current && utils.markers[utils.current] && Object.keys(utils.markers[utils.current]).length) {
-      setTimeout(() => {
-        const bounds = new google.maps.LatLngBounds()
-        bounds.extend(new google.maps.LatLng(utils.markers[utils.current].destination.lat, utils.markers[utils.current].destination.lng))
-        bounds.extend(new google.maps.LatLng(utils.markers[utils.current].origin.lat, utils.markers[utils.current].origin.lng))
-        map.fitBounds(bounds)
-      }, 10) // Hacky, could be improved (mobx reaction?)
+      setTimeout(() => { // Hacky, could be improved (mobx reaction?)
+        if (map && utils.current && utils.markers[utils.current] && Object.keys(utils.markers[utils.current]).length) {
+          const bounds = new google.maps.LatLngBounds()
+          bounds.extend(new google.maps.LatLng(utils.markers[utils.current].destination.lat, utils.markers[utils.current].destination.lng))
+          bounds.extend(new google.maps.LatLng(utils.markers[utils.current].origin.lat, utils.markers[utils.current].origin.lng))
+          map.fitBounds(bounds)
+        }
+      }, 10)
 
       return (
         <>
