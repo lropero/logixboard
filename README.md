@@ -12,7 +12,10 @@ $ npm run install:all
 ```
 
 ### Configuration
-- Set googleMapsApiKey in `src/config.js`
+- Set Google Maps API key in `src/config.js`
+>This key should have the following APIs enabled:
+>Geocoding API
+>Maps JavaScript API
 
 ### Usage
 ```sh
