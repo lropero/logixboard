@@ -8,7 +8,7 @@
     "install:all": "npm install && cd api && npm install",
     "lint": "npx standard --fix",
     "nuke": "npm run clean && npm install",
-    "start": "concurrently 'npm run start:api' 'npm run start:dev'",
+    "start": "concurrently npm:start:api npm:start:dev",
     "start:api": "cd api && npm run start",
     "start:dev": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1",
