@@ -15,7 +15,7 @@
     "upgrade": "npx upgradeps -n"
   },
   "dependencies": {
-    "@react-google-maps/api": "^1.8.1",
+    "@react-google-maps/api": "^1.8.2",
     "antd": "^3.26.7",
     "axios": "^0.19.1",
     "date-fns": "^2.9.0",
