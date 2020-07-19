@@ -19,7 +19,7 @@
     "antd": "^3.26.8",
     "axios": "^0.19.2",
     "date-fns": "^2.9.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mobx": "^5.15.4",
     "mobx-react-lite": "^1.5.2",
     "polished": "^3.4.4",
