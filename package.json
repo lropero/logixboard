@@ -17,7 +17,7 @@
   "dependencies": {
     "@react-google-maps/api": "^1.8.2",
     "antd": "^3.26.8",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "date-fns": "^2.9.0",
     "lodash": "^4.17.15",
     "mobx": "^5.15.4",
